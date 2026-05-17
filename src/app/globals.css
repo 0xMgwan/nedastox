@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* ─── Dark theme (default) ─────────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg:          #000000;
+  --bg-secondary:#080808;
+  --bg-card:     rgba(255,255,255,0.025);
+  --bg-hover:    rgba(255,255,255,0.045);
+  --fg:          #ffffff;
+  --fg-muted:    rgba(255,255,255,0.40);
+  --fg-dim:      rgba(255,255,255,0.22);
+  --fg-faint:    rgba(255,255,255,0.09);
+  --border:      rgba(255,255,255,0.10);
+  --border-strong: rgba(255,255,255,0.20);
+  --border-accent: rgba(0,255,136,0.35);
+  --accent:      #00ff88;
+  --accent-bg:   rgba(0,255,136,0.07);
+  --positive:    #00ff88;
+  --negative:    #ff3b3b;
+  --negative-bg: rgba(255,59,59,0.08);
+  --chart-grid:  rgba(255,255,255,0.04);
+  --scrollbar:   rgba(255,255,255,0.12);
+  --header-bg:   rgba(0,0,0,0.95);
+}
+
+/* ─── Light theme ───────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:          #f2efe8;
+  --bg-secondary:#eae7de;
+  --bg-card:     rgba(0,0,0,0.03);
+  --bg-hover:    rgba(0,0,0,0.05);
+  --fg:          #0a0a0a;
+  --fg-muted:    rgba(0,0,0,0.45);
+  --fg-dim:      rgba(0,0,0,0.28);
+  --fg-faint:    rgba(0,0,0,0.10);
+  --border:      rgba(0,0,0,0.10);
+  --border-strong: rgba(0,0,0,0.20);
+  --border-accent: rgba(0,90,50,0.35);
+  --accent:      #005a32;
+  --accent-bg:   rgba(0,90,50,0.07);
+  --positive:    #005a32;
+  --negative:    #c0392b;
+  --negative-bg: rgba(192,57,43,0.07);
+  --chart-grid:  rgba(0,0,0,0.04);
+  --scrollbar:   rgba(0,0,0,0.15);
+  --header-bg:   rgba(242,239,232,0.97);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar) transparent;
+}
+*::-webkit-scrollbar { width: 4px; height: 4px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 2px; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-mono), 'Courier New', monospace;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ─── Decorative patterns ───────────────────────────────────────────── */
+.dither-pattern {
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0px, transparent 1px, currentColor 1px, currentColor 2px),
+    repeating-linear-gradient(90deg, transparent 0px, transparent 1px, currentColor 1px, currentColor 2px);
+  background-size: 3px 3px;
+  opacity: 0.3;
+}
+
+.stars-bg {
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, var(--fg), transparent),
+    radial-gradient(1px 1px at 60% 70%, var(--fg), transparent),
+    radial-gradient(1px 1px at 50% 50%, var(--fg), transparent),
+    radial-gradient(1px 1px at 80% 10%, var(--fg), transparent),
+    radial-gradient(1px 1px at 90% 60%, var(--fg), transparent),
+    radial-gradient(1px 1px at 33% 80%, var(--fg), transparent),
+    radial-gradient(1px 1px at 15% 60%, var(--fg), transparent),
+    radial-gradient(1px 1px at 70% 40%, var(--fg), transparent);
+  background-size: 200% 200%, 180% 180%, 250% 250%, 220% 220%,
+                   190% 190%, 240% 240%, 210% 210%, 230% 230%;
+  opacity: 0.25;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(var(--fg-faint) 1px, transparent 1px),
+    linear-gradient(90deg, var(--fg-faint) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Ticker ────────────────────────────────────────────────────────── */
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-track { animation: ticker 40s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+
+/* ─── Pulse ─────────────────────────────────────────────────────────── */
+@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+
+/* ─── Number update ─────────────────────────────────────────────────── */
+@keyframes number-in { from{transform:translateY(-8px);opacity:0} to{transform:translateY(0);opacity:1} }
+.number-update { animation: number-in 0.25s ease-out; }
+
+/* ─── Theme transition ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+/* but NOT transform/opacity/etc - only colors */
+.no-theme-transition, .ticker-track, .pulse-dot {
+  transition: none !important;
+}
