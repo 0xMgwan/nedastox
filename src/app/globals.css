@@ -8,18 +8,19 @@
   --bg-card:     rgba(255,255,255,0.025);
   --bg-hover:    rgba(255,255,255,0.045);
   --fg:          #ffffff;
-  --fg-muted:    rgba(255,255,255,0.40);
-  --fg-dim:      rgba(255,255,255,0.22);
-  --fg-faint:    rgba(255,255,255,0.09);
-  --border:      rgba(255,255,255,0.10);
-  --border-strong: rgba(255,255,255,0.20);
+  --fg-muted:    rgba(255,255,255,0.66);
+  --fg-dim:      rgba(255,255,255,0.46);
+  --fg-faint:    rgba(255,255,255,0.30);
+  --grid-line:   rgba(255,255,255,0.06);
+  --border:      rgba(255,255,255,0.14);
+  --border-strong: rgba(255,255,255,0.26);
   --border-accent: rgba(0,255,136,0.35);
   --accent:      #00ff88;
   --accent-bg:   rgba(0,255,136,0.07);
   --positive:    #00ff88;
-  --negative:    #ff3b3b;
+  --negative:    #ff5252;
   --negative-bg: rgba(255,59,59,0.08);
-  --chart-grid:  rgba(255,255,255,0.04);
+  --chart-grid:  rgba(255,255,255,0.06);
   --scrollbar:   rgba(255,255,255,0.12);
   --header-bg:   rgba(0,0,0,0.95);
 }
@@ -31,18 +32,19 @@
   --bg-card:     rgba(0,0,0,0.03);
   --bg-hover:    rgba(0,0,0,0.05);
   --fg:          #0a0a0a;
-  --fg-muted:    rgba(0,0,0,0.45);
-  --fg-dim:      rgba(0,0,0,0.28);
-  --fg-faint:    rgba(0,0,0,0.10);
-  --border:      rgba(0,0,0,0.10);
-  --border-strong: rgba(0,0,0,0.20);
-  --border-accent: rgba(0,90,50,0.35);
-  --accent:      #005a32;
-  --accent-bg:   rgba(0,90,50,0.07);
-  --positive:    #005a32;
+  --fg-muted:    rgba(0,0,0,0.72);
+  --fg-dim:      rgba(0,0,0,0.55);
+  --fg-faint:    rgba(0,0,0,0.38);
+  --grid-line:   rgba(0,0,0,0.06);
+  --border:      rgba(0,0,0,0.16);
+  --border-strong: rgba(0,0,0,0.30);
+  --border-accent: rgba(0,90,50,0.40);
+  --accent:      #00713f;
+  --accent-bg:   rgba(0,113,63,0.08);
+  --positive:    #00713f;
   --negative:    #c0392b;
   --negative-bg: rgba(192,57,43,0.07);
-  --chart-grid:  rgba(0,0,0,0.04);
+  --chart-grid:  rgba(0,0,0,0.07);
   --scrollbar:   rgba(0,0,0,0.15);
   --header-bg:   rgba(242,239,232,0.97);
 }
@@ -95,8 +97,8 @@ body {
 
 .grid-bg {
   background-image:
-    linear-gradient(var(--fg-faint) 1px, transparent 1px),
-    linear-gradient(90deg, var(--fg-faint) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 

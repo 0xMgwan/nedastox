@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Sun, Moon, ArrowLeft, AlertTriangle, CheckCircle, Clock, TrendingUp } from 'lucide-react';
+import { Sun, Moon, ArrowLeft, AlertTriangle, CheckCircle, Clock, TrendingUp, LogOut, UserCircle } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useBackOfficeAuth } from '@/contexts/BackOfficeAuth';
 import { TRADES, tradeStats } from '@/data/backoffice-data';
 import type { Trade } from '@/data/backoffice-data';
 import TradeBlotter from '@/components/backoffice/TradeBlotter';
@@ -28,6 +29,7 @@ const TABS: { id: Tab; label: string }[] = [
 
 export default function BackOfficePage() {
   const { theme, toggle } = useTheme();
+  const { user, logout }  = useBackOfficeAuth();
   const isDark = theme === 'dark';
   const [tab, setTab]             = useState<Tab>('trades');
   const [selectedTrade, setSelected] = useState<Trade | null>(TRADES[0]);
@@ -61,11 +63,23 @@ export default function BackOfficePage() {
             <span className="text-[8px] font-mono hidden lg:inline" style={{ color: 'var(--fg-faint)' }}>FIMCO · DSE MEMBER</span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="hidden lg:flex items-center gap-3 text-[9px] font-mono" style={{ color: 'var(--fg-muted)' }}>
-              <Link href="/dashboard" className="no-underline hover:underline" style={{ color: 'var(--fg-muted)' }}>MARKET DATA</Link>
-              <span>·</span>
-              <Link href="/funds" className="no-underline hover:underline" style={{ color: 'var(--fg-muted)' }}>IMS</Link>
-            </div>
+            {/* Logged-in user */}
+            {user && (
+              <div className="hidden lg:flex items-center gap-2 px-2 py-1" style={{ border: '1px solid var(--border)' }}>
+                <UserCircle size={12} style={{ color: accentColor }} />
+                <div className="leading-tight">
+                  <div className="text-[8px] font-mono" style={{ color: 'var(--fg)' }}>{user.name}</div>
+                  <div className="text-[7px] font-mono" style={{ color: accentColor }}>{user.role.toUpperCase()}</div>
+                </div>
+              </div>
+            )}
+            <button onClick={logout}
+              className="flex items-center gap-1 px-2 h-8 text-[8px] font-mono transition-all"
+              style={{ border: '1px solid var(--border)', color: 'var(--fg-muted)' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--negative)'; e.currentTarget.style.color = 'var(--negative)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--fg-muted)'; }}>
+              <LogOut size={11} /> LOGOUT
+            </button>
             <button onClick={toggle} className="w-8 h-8 flex items-center justify-center" style={{ border: '1px solid var(--border)', color: 'var(--fg-muted)' }}>
               {isDark ? <Sun size={12} /> : <Moon size={12} />}
             </button>

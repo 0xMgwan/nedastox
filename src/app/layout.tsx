@@ -9,8 +9,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TZAssets — Tanzania Financial Markets",
-  description: "Real-time tracker for Tanzania stocks, bonds, funds and financial instruments",
+  title: "AssetConnect — Investment Management Solution",
+  description: "Full-stack investment management platform for Tanzania — DSE market data, mutual/pension/provident/private equity fund management, and broker back office.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

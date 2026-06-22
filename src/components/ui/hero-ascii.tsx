@@ -84,7 +84,7 @@ export default function HeroAscii() {
           <div className="flex items-center gap-2 lg:gap-4">
             <div className="font-mono text-xl lg:text-2xl font-bold tracking-widest italic transform -skew-x-12"
               style={{ color: 'var(--fg)' }}>
-              TZASSETS
+              ASSETCONNECT
             </div>
             <div className="h-3 lg:h-4 w-px" style={{ background: 'var(--border-strong)' }} />
             <span className="text-[8px] lg:text-[10px] font-mono" style={{ color: 'var(--fg-muted)' }}>EST. 2025</span>
@@ -131,8 +131,8 @@ export default function HeroAscii() {
               <div className="hidden lg:block absolute -left-3 top-0 bottom-0 w-1 dither-pattern" style={{ color: 'var(--fg)' }} />
               <h1 className="text-2xl lg:text-5xl font-bold leading-tight font-mono tracking-wider"
                 style={{ color: 'var(--fg)', letterSpacing: '0.1em' }}>
-                TANZANIA
-                <span className="block mt-1 lg:mt-2" style={{ color: 'var(--fg)' }}>FINANCIAL</span>
+                ASSET
+                <span className="block mt-1 lg:mt-2" style={{ color: 'var(--fg)' }}>CONNECT</span>
                 <span className="block mt-1 lg:mt-2 text-xl lg:text-4xl" style={{ color: 'var(--accent)' }}>IMS PLATFORM</span>
               </h1>
             </div>
@@ -153,7 +153,7 @@ export default function HeroAscii() {
               {[
                 { href:'/dashboard',   color:'var(--accent)', label:'MARKET DATA',   sub:'DSE equities · bonds · forex · portfolio' },
                 { href:'/funds',       color:'#00aaff',       label:'INVESTMENT MGT',sub:'Mutual · Pension · Provident · Private Equity' },
-                { href:'/back-office', color:'#ffaa00',       label:'BACK OFFICE',   sub:'Reconciliation · Contract notes · Settlement' },
+                { href:'/back-office', color:'#ffaa00',       label:'BACK OFFICE 🔒', sub:'Reconciliation · Settlement · Secure login' },
               ].map((m, i) => (
                 <a key={i} href={m.href}
                   className="flex items-center justify-between px-3 py-2.5 no-underline transition-all"
