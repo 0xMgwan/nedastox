@@ -133,7 +133,7 @@ export default function HeroAscii() {
                 style={{ color: 'var(--fg)', letterSpacing: '0.1em' }}>
                 TANZANIA
                 <span className="block mt-1 lg:mt-2" style={{ color: 'var(--fg)' }}>FINANCIAL</span>
-                <span className="block mt-1 lg:mt-2 text-xl lg:text-4xl" style={{ color: 'var(--accent)' }}>MARKETS</span>
+                <span className="block mt-1 lg:mt-2 text-xl lg:text-4xl" style={{ color: 'var(--accent)' }}>IMS PLATFORM</span>
               </h1>
             </div>
 
@@ -144,45 +144,29 @@ export default function HeroAscii() {
               ))}
             </div>
 
-            <p className="text-xs lg:text-base mb-5 lg:mb-6 leading-relaxed font-mono" style={{ color: 'var(--fg-muted)' }}>
-              Real-time tracker for DSE equities, BOT government bonds, UTT AMIS unit trusts, and live TZS forex rates.
+            <p className="text-xs lg:text-base mb-4 lg:mb-5 leading-relaxed font-mono" style={{ color: 'var(--fg-muted)' }}>
+              Full-stack investment management platform — DSE market data, fund management, and broker back office for Tanzania&apos;s capital markets.
             </p>
 
-            {/* Market stats mini-panel */}
-            <div className="grid grid-cols-3 gap-3 mb-6 p-3" style={{ border: '1px solid var(--border)' }}>
-              <div>
-                <div className="text-[9px] font-mono mb-1" style={{ color: 'var(--fg-faint)' }}>DSE STOCKS</div>
-                <div className="text-sm font-mono font-bold" style={{ color: 'var(--accent)' }}>12 listed</div>
-                <div className="text-[9px] font-mono" style={{ color: 'var(--fg-dim)' }}>EOD prices</div>
-              </div>
-              <div>
-                <div className="text-[9px] font-mono mb-1" style={{ color: 'var(--fg-faint)' }}>T-BILL 91D</div>
-                <div className="text-sm font-mono font-bold" style={{ color: 'var(--fg)' }}>9.65%</div>
-                <div className="text-[9px] font-mono" style={{ color: 'var(--fg-dim)' }}>BOT auction</div>
-              </div>
-              <div>
-                <div className="text-[9px] font-mono mb-1" style={{ color: 'var(--fg-faint)' }}>TZS/USD</div>
-                <div className="text-sm font-mono font-bold" style={{ color: 'var(--fg)' }}>2,644</div>
-                <div className="text-[9px] font-mono" style={{ color: 'var(--positive)' }}>● LIVE</div>
-              </div>
-            </div>
-
-            {/* CTA buttons */}
-            <div className="flex flex-col lg:flex-row gap-3 lg:gap-4">
-              <a href="/dashboard"
-                className="relative px-5 lg:px-6 py-2 lg:py-2.5 font-mono text-xs lg:text-sm text-center no-underline transition-all duration-200 group"
-                style={{ background: 'var(--accent)', color: 'var(--bg)', border: '1px solid var(--accent)' }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--accent)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = 'var(--bg)'; }}>
-                OPEN DASHBOARD →
-              </a>
-              <a href="/dashboard?tab=portfolio"
-                className="relative px-5 lg:px-6 py-2 lg:py-2.5 font-mono text-xs lg:text-sm text-center no-underline transition-all duration-200"
-                style={{ background: 'transparent', color: 'var(--fg)', border: '1px solid var(--border-strong)' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--fg)'; e.currentTarget.style.background = 'var(--bg-hover)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border-strong)'; e.currentTarget.style.background = 'transparent'; }}>
-                VIEW PORTFOLIO
-              </a>
+            {/* Module grid */}
+            <div className="grid grid-cols-1 gap-2 mb-5">
+              {[
+                { href:'/dashboard',   color:'var(--accent)', label:'MARKET DATA',   sub:'DSE equities · bonds · forex · portfolio' },
+                { href:'/funds',       color:'#00aaff',       label:'INVESTMENT MGT',sub:'Mutual · Pension · Provident · Private Equity' },
+                { href:'/back-office', color:'#ffaa00',       label:'BACK OFFICE',   sub:'Reconciliation · Contract notes · Settlement' },
+              ].map((m, i) => (
+                <a key={i} href={m.href}
+                  className="flex items-center justify-between px-3 py-2.5 no-underline transition-all"
+                  style={{ border: `1px solid ${m.color}40`, background: `${m.color}06`, color: 'var(--fg)' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = `${m.color}12`; e.currentTarget.style.borderColor = m.color; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = `${m.color}06`; e.currentTarget.style.borderColor = `${m.color}40`; }}>
+                  <div>
+                    <div className="text-[10px] font-mono font-bold" style={{ color: m.color }}>{m.label}</div>
+                    <div className="text-[8px] font-mono" style={{ color: 'var(--fg-faint)' }}>{m.sub}</div>
+                  </div>
+                  <span className="text-[10px] font-mono" style={{ color: m.color }}>→</span>
+                </a>
+              ))}
             </div>
 
             {/* Bottom notation */}
@@ -216,7 +200,7 @@ export default function HeroAscii() {
                   style={{ background: 'var(--positive)', opacity: 1 - i * 0.3, animationDelay: `${delay}s` }} />
               ))}
             </div>
-            <span className="hidden lg:inline">DAR ES SALAAM EXCHANGE</span>
+            <span className="hidden lg:inline">DSE · BOT · UTT AMIS · CMSA · FIMCO</span>
           </div>
         </div>
       </div>
