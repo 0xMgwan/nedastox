@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Sun, Moon, ArrowLeft, AlertTriangle, CheckCircle, Clock, TrendingUp, LogOut, UserCircle } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useBackOfficeAuth } from '@/contexts/BackOfficeAuth';
+import { boAccess } from '@/lib/permissions';
 import { TRADES, tradeStats } from '@/data/backoffice-data';
 import type { Trade } from '@/data/backoffice-data';
 import TradeBlotter from '@/components/backoffice/TradeBlotter';
@@ -31,8 +32,13 @@ export default function BackOfficePage() {
   const { theme, toggle } = useTheme();
   const { user, logout }  = useBackOfficeAuth();
   const isDark = theme === 'dark';
-  const [tab, setTab]             = useState<Tab>('trades');
+  const access = boAccess(user?.role);
+  const visibleTabs = TABS.filter(t => access.tabs.includes(t.id));
+  const [tab, setTab]             = useState<Tab>(visibleTabs[0]?.id ?? 'trades');
   const [selectedTrade, setSelected] = useState<Trade | null>(TRADES[0]);
+
+  // Guard: if role can't see the active tab, fall back to its first allowed tab
+  const effectiveTab: Tab = access.tabs.includes(tab) ? tab : (visibleTabs[0]?.id ?? 'trades');
 
   const stats = tradeStats();
   const accentColor = '#e10600';
@@ -107,10 +113,10 @@ export default function BackOfficePage() {
       {/* Module tabs */}
       <div className="max-w-[1600px] mx-auto px-4 lg:px-8">
         <div className="flex items-center gap-0 overflow-x-auto" style={{ borderBottom: '1px solid var(--border)' }}>
-          {TABS.map(t => (
+          {visibleTabs.map(t => (
             <button key={t.id} onClick={() => setTab(t.id)}
               className="px-4 py-2.5 text-[9px] font-mono tracking-wider whitespace-nowrap transition-all flex-shrink-0"
-              style={tab === t.id ? {
+              style={effectiveTab === t.id ? {
                 color: accentColor,
                 borderBottom: `2px solid ${accentColor}`,
                 marginBottom: '-1px',
@@ -118,6 +124,10 @@ export default function BackOfficePage() {
               {t.label}
             </button>
           ))}
+          <div className="ml-auto pr-2 flex items-center gap-1.5 text-[8px] font-mono flex-shrink-0" style={{ color: 'var(--fg-faint)' }}>
+            <AlertTriangle size={8} style={{ opacity: 0 }} />
+            <span style={{ color: accentColor }}>ACCESS: {access.scope.toUpperCase()}</span>
+          </div>
         </div>
       </div>
 
@@ -128,7 +138,7 @@ export default function BackOfficePage() {
         <div className="flex items-center gap-2 text-[8px] font-mono mb-4" style={{ color: 'var(--fg-faint)' }}>
           <span style={{ color: 'var(--fg-dim)' }}>AssetConnect</span>
           <span>/</span><span>BACK OFFICE</span>
-          <span>/</span><span style={{ color: accentColor }}>{TABS.find(t=>t.id===tab)?.label}</span>
+          <span>/</span><span style={{ color: accentColor }}>{TABS.find(t=>t.id===effectiveTab)?.label}</span>
           {stats.breaks > 0 && (
             <div className="ml-auto flex items-center gap-1" style={{ color: 'var(--negative)' }}>
               <AlertTriangle size={9} />
@@ -138,7 +148,7 @@ export default function BackOfficePage() {
         </div>
 
         {/* ── TRADE BLOTTER ─────────────────────────────────────────────── */}
-        {tab === 'trades' && (
+        {effectiveTab === 'trades' && (
           <div className="space-y-4">
             <TradeBlotter onSelect={setSelected} selected={selectedTrade} />
             {selectedTrade && (
@@ -205,7 +215,7 @@ export default function BackOfficePage() {
         )}
 
         {/* ── CONTRACT NOTES ────────────────────────────────────────────── */}
-        {tab === 'contract_notes' && (
+        {effectiveTab === 'contract_notes' && (
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
             <div className="lg:col-span-2 space-y-2">
               <div className="text-[8px] font-mono mb-2" style={{ color: 'var(--fg-faint)' }}>SELECT TRADE</div>
@@ -233,19 +243,19 @@ export default function BackOfficePage() {
         )}
 
         {/* ── FEE CALCULATOR ────────────────────────────────────────────── */}
-        {tab === 'fees' && <FeeCalculator />}
+        {effectiveTab === 'fees' && <FeeCalculator />}
 
         {/* ── SETTLEMENT ────────────────────────────────────────────────── */}
-        {tab === 'settlement' && <SettlementQueue />}
+        {effectiveTab === 'settlement' && <SettlementQueue />}
 
         {/* ── CORPORATE ACTIONS ─────────────────────────────────────────── */}
-        {tab === 'corporate' && <CorporateActionsPanel />}
+        {effectiveTab === 'corporate' && <CorporateActionsPanel />}
 
         {/* ── REGULATORY REPORTS ────────────────────────────────────────── */}
-        {tab === 'reports' && <RegulatoryReports />}
+        {effectiveTab === 'reports' && <RegulatoryReports />}
 
         {/* ── AUDIT ─────────────────────────────────────────────────────── */}
-        {tab === 'audit' && <AuditLog />}
+        {effectiveTab === 'audit' && <AuditLog />}
       </main>
 
       <footer className="max-w-[1600px] mx-auto px-4 lg:px-8 py-4 mt-6 text-[8px] font-mono"

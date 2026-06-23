@@ -24,7 +24,7 @@ const LOADS: Record<string, { front: number; back: number }> = {
   private_equity: { front: 0.020, back: 0.015 },
 };
 
-export default function UnitManagement({ fund }: { fund: Fund }) {
+export default function UnitManagement({ fund, canApprove = true }: { fund: Fund; canApprove?: boolean }) {
   const color = FUND_TYPE_COLORS[fund.type];
   const load  = LOADS[fund.type];
 
@@ -33,6 +33,7 @@ export default function UnitManagement({ fund }: { fund: Fund }) {
   const [amount, setAmount]   = useState('5000000');
   const [units, setUnits]     = useState('2000');
   const [payment, setPayment] = useState('Bank Transfer');
+  const [approved, setApproved] = useState(false);
   const [confirm, setConfirm] = useState<null | {
     ref: string; units: number; gross: number; loadFee: number; net: number; cn: string | null;
   }>(null);
@@ -49,6 +50,7 @@ export default function UnitManagement({ fund }: { fund: Fund }) {
   const redeemNet     = redeemGross - backLoad;
 
   function submit() {
+    setApproved(false);
     const ref = `IMS-${Date.now().toString().slice(-7)}`;
     const cn  = isEquityFund && (kind === 'purchase' || kind === 'redemption')
       ? `CN-2026-${Math.floor(Math.random() * 900 + 100)}`
@@ -166,7 +168,9 @@ export default function UnitManagement({ fund }: { fund: Fund }) {
               SUBMIT {KINDS.find(k => k.id === kind)?.label} →
             </button>
             <span className="text-[7px] font-mono" style={{ color: 'var(--fg-faint)' }}>
-              Maker-checker approval required · Fractional units to 4 decimals
+              {canApprove
+                ? 'You are a checker — you may approve queued transactions · 4-decimal units'
+                : 'Maker role — transactions queue for checker approval · 4-decimal units'}
             </span>
           </div>
 
@@ -174,23 +178,42 @@ export default function UnitManagement({ fund }: { fund: Fund }) {
           {confirm && (
             <div className="p-3 space-y-2" style={{ border: `1px solid ${color}`, background: `${color}08` }}>
               <div className="flex items-center gap-2">
-                <CheckCircle size={12} style={{ color }} />
-                <span className="text-[9px] font-mono font-bold" style={{ color }}>TRANSACTION QUEUED — {confirm.ref}</span>
+                <CheckCircle size={12} style={{ color: approved ? 'var(--positive)' : color }} />
+                <span className="text-[9px] font-mono font-bold" style={{ color: approved ? 'var(--positive)' : color }}>
+                  {approved ? 'TRANSACTION APPROVED & POSTED' : 'TRANSACTION QUEUED'} — {confirm.ref}
+                </span>
               </div>
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 text-[8px] font-mono">
                 <div><span style={{ color: 'var(--fg-faint)' }}>Units: </span><span style={{ color: 'var(--fg)' }}>{confirm.units.toFixed(4)}</span></div>
                 <div><span style={{ color: 'var(--fg-faint)' }}>Load: </span><span style={{ color: 'var(--fg)' }}>{confirm.loadFee.toLocaleString('en-TZ', { maximumFractionDigits: 0 })}</span></div>
                 <div><span style={{ color: 'var(--fg-faint)' }}>Net: </span><span style={{ color: 'var(--fg)' }}>TZS {confirm.net.toLocaleString('en-TZ', { maximumFractionDigits: 0 })}</span></div>
-                <div><span style={{ color: 'var(--fg-faint)' }}>Status: </span><span style={{ color: '#ffaa00' }}>PENDING APPROVAL</span></div>
+                <div><span style={{ color: 'var(--fg-faint)' }}>Status: </span>
+                  <span style={{ color: approved ? 'var(--positive)' : '#ffaa00' }}>{approved ? 'POSTED' : 'PENDING APPROVAL'}</span>
+                </div>
               </div>
               {confirm.cn && (
                 <div className="text-[8px] font-mono pt-1" style={{ borderTop: '1px solid var(--border)', color: '#e10600' }}>
                   ↳ Routed to Broker Back Office — contract note <strong>{confirm.cn}</strong> generated for DSE execution & T+2 settlement
                 </div>
               )}
-              <div className="flex items-center gap-3 text-[7px] font-mono" style={{ color: 'var(--fg-muted)' }}>
-                <span className="flex items-center gap-1"><Mail size={8} /> Email confirmation sent</span>
-                <span className="flex items-center gap-1"><Smartphone size={8} /> SMS alert sent</span>
+              {/* Maker-checker action */}
+              <div className="flex items-center justify-between pt-1" style={{ borderTop: '1px solid var(--border)' }}>
+                <div className="flex items-center gap-3 text-[7px] font-mono" style={{ color: 'var(--fg-muted)' }}>
+                  <span className="flex items-center gap-1"><Mail size={8} /> Email sent</span>
+                  <span className="flex items-center gap-1"><Smartphone size={8} /> SMS sent</span>
+                </div>
+                {!approved && (
+                  canApprove ? (
+                    <button onClick={() => setApproved(true)}
+                      className="px-3 py-1 text-[8px] font-mono" style={{ background: 'var(--positive)', color: '#fff' }}>
+                      APPROVE & POST
+                    </button>
+                  ) : (
+                    <span className="flex items-center gap-1 text-[7px] font-mono" style={{ color: 'var(--fg-faint)' }}>
+                      <Lock size={8} /> Awaiting Fund Manager approval
+                    </span>
+                  )
+                )}
               </div>
             </div>
           )}

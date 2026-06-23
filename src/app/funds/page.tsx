@@ -19,6 +19,8 @@ import UnitManagement from '@/components/investment/UnitManagement';
 import PensionOperations from '@/components/investment/PensionOperations';
 import ProvidentOperations from '@/components/investment/ProvidentOperations';
 import BackOfficeLink from '@/components/investment/BackOfficeLink';
+import { imsAccess, type IMSInnerTab } from '@/lib/permissions';
+import { Lock } from 'lucide-react';
 
 type Tab = 'mutual' | 'pension' | 'provident' | 'private_equity';
 
@@ -45,6 +47,10 @@ export default function FundsPage() {
 
   const currentFunds = TABS.find(t => t.id === tab)!.funds;
   const color = FUND_TYPE_COLORS[tab];
+
+  // Role-based access
+  const access = imsAccess(user?.role);
+  const effectiveInner: IMSInnerTab = access.tabs.includes(innerTab) ? innerTab : 'overview';
 
   // KPI bar
   const kpis = [
@@ -163,29 +169,30 @@ export default function FundsPage() {
           <div className="lg:col-span-9 space-y-4">
             {/* Inner tabs */}
             <div className="flex items-center gap-0" style={{ borderBottom: '1px solid var(--border)' }}>
-              {[
+              {([
                 { id:'overview'      as const, l:'OVERVIEW'      },
                 { id:'unit_mgmt'     as const, l: tab === 'pension' ? 'PENSION OPS' : tab === 'provident' ? 'PF OPERATIONS' : 'UNIT MGMT' },
                 { id:'holders'       as const, l:'UNIT HOLDERS'  },
                 { id:'transactions'  as const, l:'TRANSACTIONS'  },
                 ...(tab === 'provident' ? [{ id:'contributions' as const, l:'CONTRIBUTIONS' }] : []),
-              ].map(t => (
+              ] as { id: IMSInnerTab; l: string }[])
+                .filter(t => access.tabs.includes(t.id))
+                .map(t => (
                 <button key={t.id} onClick={() => setInnerTab(t.id)}
                   className="px-4 py-2 text-[9px] font-mono transition-all"
-                  style={innerTab === t.id ? {
+                  style={effectiveInner === t.id ? {
                     color, borderBottom: `2px solid ${color}`, marginBottom: '-1px',
                   } : { color: 'var(--fg-muted)', borderBottom: '2px solid transparent', marginBottom: '-1px' }}>
                   {t.l}
                 </button>
               ))}
               <div className="ml-auto pr-2 flex items-center gap-2 text-[8px] font-mono" style={{ color: 'var(--fg-faint)' }}>
-                <span>TRUSTEE: {selected?.trustee}</span>
-                <span>·</span>
-                <span>MANAGER: {selected?.fundManager}</span>
+                <Lock size={8} />
+                <span style={{ color }}>{access.scope}</span>
               </div>
             </div>
 
-            {innerTab === 'overview' && selected && (
+            {effectiveInner === 'overview' && selected && (
               <div className="space-y-4">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                   <div className="lg:col-span-2"><NAVChart fund={selected} /></div>
@@ -229,21 +236,21 @@ export default function FundsPage() {
               </div>
             )}
 
-            {innerTab === 'unit_mgmt' && selected && (
+            {effectiveInner === 'unit_mgmt' && selected && (
               selected.type === 'pension'   ? <PensionOperations fund={selected} />   :
               selected.type === 'provident' ? <ProvidentOperations fund={selected} /> :
-              <UnitManagement fund={selected} />
+              <UnitManagement fund={selected} canApprove={access.canApprove} />
             )}
 
-            {innerTab === 'holders' && (
+            {effectiveInner === 'holders' && (
               <UnitHolderTable fundId={selected?.id} />
             )}
 
-            {innerTab === 'transactions' && (
+            {effectiveInner === 'transactions' && (
               <TransactionLedger fundId={selected?.id} />
             )}
 
-            {innerTab === 'contributions' && (
+            {effectiveInner === 'contributions' && (
               <div style={{ border: '1px solid var(--border)', background: 'var(--bg-card)' }}>
                 <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--border)' }}>
                   <span className="text-[9px] font-mono tracking-wider" style={{ color: 'var(--fg-dim)' }}>
