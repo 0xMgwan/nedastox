@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Sun, Moon, ArrowLeft, TrendingUp, Users, DollarSign, BarChart2 } from 'lucide-react';
+import { Sun, Moon, ArrowLeft, TrendingUp, Users, DollarSign, BarChart2, LogOut, UserCircle } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useIMSAuth } from '@/contexts/IMSAuth';
 import {
   ALL_FUNDS, MUTUAL_FUNDS, PENSION_FUNDS, PROVIDENT_FUNDS, PRIVATE_EQUITY_FUNDS,
   MEMBER_CONTRIBUTIONS, Fund, FUND_TYPE_COLORS, TOTAL_AUM, TOTAL_UNIT_HOLDERS,
@@ -14,6 +15,8 @@ import NAVChart from '@/components/investment/NAVChart';
 import AllocationDonut from '@/components/investment/AllocationDonut';
 import UnitHolderTable from '@/components/investment/UnitHolderTable';
 import TransactionLedger from '@/components/investment/TransactionLedger';
+import UnitManagement from '@/components/investment/UnitManagement';
+import BackOfficeLink from '@/components/investment/BackOfficeLink';
 
 type Tab = 'mutual' | 'pension' | 'provident' | 'private_equity';
 
@@ -32,10 +35,11 @@ function fmt(n: number) {
 
 export default function FundsPage() {
   const { theme, toggle } = useTheme();
+  const { user, logout }  = useIMSAuth();
   const isDark = theme === 'dark';
   const [tab, setTab]           = useState<Tab>('mutual');
   const [selected, setSelected] = useState<Fund>(MUTUAL_FUNDS[0]);
-  const [innerTab, setInnerTab] = useState<'overview'|'holders'|'transactions'|'contributions'>('overview');
+  const [innerTab, setInnerTab] = useState<'overview'|'holders'|'transactions'|'unit_mgmt'|'contributions'>('overview');
 
   const currentFunds = TABS.find(t => t.id === tab)!.funds;
   const color = FUND_TYPE_COLORS[tab];
@@ -67,7 +71,7 @@ export default function FundsPage() {
             </Link>
             <div className="h-3 w-px" style={{ background: 'var(--border-strong)' }} />
             <div className="font-mono text-lg font-bold tracking-widest italic -skew-x-12" style={{ color: 'var(--fg)' }}>
-              TZASSETS
+              ASSETCONNECT
             </div>
             <div className="h-3 w-px" style={{ background: 'var(--border-strong)' }} />
             <span className="text-[10px] font-mono" style={{ color }}>INVESTMENT MANAGEMENT</span>
@@ -78,6 +82,22 @@ export default function FundsPage() {
               <span>·</span>
               <Link href="/back-office" className="no-underline hover:underline" style={{ color: 'var(--fg-muted)' }}>BACK OFFICE</Link>
             </div>
+            {user && (
+              <div className="hidden lg:flex items-center gap-2 px-2 py-1" style={{ border: '1px solid var(--border)' }}>
+                <UserCircle size={12} style={{ color }} />
+                <div className="leading-tight">
+                  <div className="text-[8px] font-mono" style={{ color: 'var(--fg)' }}>{user.name}</div>
+                  <div className="text-[7px] font-mono" style={{ color }}>{user.role.toUpperCase()}</div>
+                </div>
+              </div>
+            )}
+            <button onClick={logout}
+              className="flex items-center gap-1 px-2 h-8 text-[8px] font-mono transition-all"
+              style={{ border: '1px solid var(--border)', color: 'var(--fg-muted)' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--negative)'; e.currentTarget.style.color = 'var(--negative)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--fg-muted)'; }}>
+              <LogOut size={11} /> LOGOUT
+            </button>
             <button onClick={toggle} className="w-8 h-8 flex items-center justify-center" style={{ border: '1px solid var(--border)', color: 'var(--fg-muted)' }}>
               {isDark ? <Sun size={12} /> : <Moon size={12} />}
             </button>
@@ -143,6 +163,7 @@ export default function FundsPage() {
             <div className="flex items-center gap-0" style={{ borderBottom: '1px solid var(--border)' }}>
               {[
                 { id:'overview'      as const, l:'OVERVIEW'      },
+                { id:'unit_mgmt'     as const, l:'UNIT MGMT'     },
                 { id:'holders'       as const, l:'UNIT HOLDERS'  },
                 { id:'transactions'  as const, l:'TRANSACTIONS'  },
                 ...(tab === 'provident' ? [{ id:'contributions' as const, l:'CONTRIBUTIONS' }] : []),
@@ -200,7 +221,14 @@ export default function FundsPage() {
                     </div>
                   ))}
                 </div>
+
+                {/* Back office linkage */}
+                <BackOfficeLink fundId={selected.id} />
               </div>
+            )}
+
+            {innerTab === 'unit_mgmt' && selected && (
+              <UnitManagement fund={selected} />
             )}
 
             {innerTab === 'holders' && (

@@ -152,7 +152,7 @@ export default function HeroAscii() {
             <div className="grid grid-cols-1 gap-2 mb-5">
               {[
                 { href:'/dashboard',   color:'var(--accent)', label:'MARKET DATA',   sub:'DSE equities · bonds · forex · portfolio' },
-                { href:'/funds',       color:'#00aaff',       label:'INVESTMENT MGT',sub:'Mutual · Pension · Provident · Private Equity' },
+                { href:'/funds',       color:'#00aaff',       label:'INVESTMENT MGT 🔒', sub:'Mutual · Pension · Provident · PE · Secure login' },
                 { href:'/back-office', color:'#ffaa00',       label:'BACK OFFICE 🔒', sub:'Reconciliation · Settlement · Secure login' },
               ].map((m, i) => (
                 <a key={i} href={m.href}

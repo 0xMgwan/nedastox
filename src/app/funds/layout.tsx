@@ -1,11 +1,11 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { BackOfficeAuthProvider, useBackOfficeAuth, BO_DEMO_CREDENTIALS } from '@/contexts/BackOfficeAuth';
+import { IMSAuthProvider, useIMSAuth, IMS_DEMO_CREDENTIALS } from '@/contexts/IMSAuth';
 import AuthLogin from '@/components/auth/AuthLogin';
 
 function Gate({ children }: { children: ReactNode }) {
-  const { user, ready, login } = useBackOfficeAuth();
+  const { user, ready, login } = useIMSAuth();
 
   if (!ready) {
     return (
@@ -17,21 +17,21 @@ function Gate({ children }: { children: ReactNode }) {
 
   if (!user) return (
     <AuthLogin
-      title="BACK OFFICE"
-      subtitle="FIMCO SECURITIES · DSE MEMBER · SECURE ACCESS"
+      title="ASSETCONNECT IMS"
+      subtitle="INVESTMENT MANAGEMENT · FUND OPERATIONS · SECURE ACCESS"
       accent="#00aaff"
-      footerNote="CMSA LICENSED · CSD CONNECTED · SESSION ENCRYPTED"
-      demoCredentials={BO_DEMO_CREDENTIALS}
+      footerNote="IAS 39 COMPLIANT · CMSA REGULATED · SESSION ENCRYPTED"
+      demoCredentials={IMS_DEMO_CREDENTIALS}
       login={login}
     />
   );
   return <>{children}</>;
 }
 
-export default function BackOfficeLayout({ children }: { children: ReactNode }) {
+export default function FundsLayout({ children }: { children: ReactNode }) {
   return (
-    <BackOfficeAuthProvider>
+    <IMSAuthProvider>
       <Gate>{children}</Gate>
-    </BackOfficeAuthProvider>
+    </IMSAuthProvider>
   );
 }
