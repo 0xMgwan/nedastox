@@ -16,6 +16,8 @@ import AllocationDonut from '@/components/investment/AllocationDonut';
 import UnitHolderTable from '@/components/investment/UnitHolderTable';
 import TransactionLedger from '@/components/investment/TransactionLedger';
 import UnitManagement from '@/components/investment/UnitManagement';
+import PensionOperations from '@/components/investment/PensionOperations';
+import ProvidentOperations from '@/components/investment/ProvidentOperations';
 import BackOfficeLink from '@/components/investment/BackOfficeLink';
 
 type Tab = 'mutual' | 'pension' | 'provident' | 'private_equity';
@@ -163,7 +165,7 @@ export default function FundsPage() {
             <div className="flex items-center gap-0" style={{ borderBottom: '1px solid var(--border)' }}>
               {[
                 { id:'overview'      as const, l:'OVERVIEW'      },
-                { id:'unit_mgmt'     as const, l:'UNIT MGMT'     },
+                { id:'unit_mgmt'     as const, l: tab === 'pension' ? 'PENSION OPS' : tab === 'provident' ? 'PF OPERATIONS' : 'UNIT MGMT' },
                 { id:'holders'       as const, l:'UNIT HOLDERS'  },
                 { id:'transactions'  as const, l:'TRANSACTIONS'  },
                 ...(tab === 'provident' ? [{ id:'contributions' as const, l:'CONTRIBUTIONS' }] : []),
@@ -228,6 +230,8 @@ export default function FundsPage() {
             )}
 
             {innerTab === 'unit_mgmt' && selected && (
+              selected.type === 'pension'   ? <PensionOperations fund={selected} />   :
+              selected.type === 'provident' ? <ProvidentOperations fund={selected} /> :
               <UnitManagement fund={selected} />
             )}
 
