@@ -5,7 +5,7 @@ import { AlertTriangle, CheckCircle, Clock, XCircle, RefreshCw } from 'lucide-re
 
 const STATUS_CONFIG: Record<TradeStatus, { color: string; icon: React.ReactNode; label: string }> = {
   settled:   { color: 'var(--positive)', icon: <CheckCircle size={9} />,  label: 'SETTLED'   },
-  matched:   { color: '#00aaff',         icon: <CheckCircle size={9} />,  label: 'MATCHED'   },
+  matched:   { color: '#e10600',         icon: <CheckCircle size={9} />,  label: 'MATCHED'   },
   pending:   { color: '#ffaa00',         icon: <Clock       size={9} />,  label: 'PENDING'   },
   break:     { color: 'var(--negative)', icon: <AlertTriangle size={9}/>, label: 'BREAK'     },
   failed:    { color: 'var(--negative)', icon: <XCircle     size={9} />,  label: 'FAILED'    },

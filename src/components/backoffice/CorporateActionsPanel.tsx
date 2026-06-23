@@ -3,18 +3,18 @@ import { CORPORATE_ACTIONS, CorporateAction } from '@/data/backoffice-data';
 import { Calendar, DollarSign, Percent, AlertCircle, CheckCircle } from 'lucide-react';
 
 const TYPE_LABELS: Record<string, { l: string; c: string }> = {
-  dividend:    { l: 'DIVIDEND',    c: '#00ff88' },
-  rights_issue:{ l: 'RIGHTS',      c: '#00aaff' },
+  dividend:    { l: 'DIVIDEND',    c: '#0e8a4f' },
+  rights_issue:{ l: 'RIGHTS',      c: '#e10600' },
   bonus_share: { l: 'BONUS',       c: '#ffaa00' },
-  stock_split: { l: 'SPLIT',       c: '#aa88ff' },
+  stock_split: { l: 'SPLIT',       c: '#6b7280' },
   agm:         { l: 'AGM',         c: '#888'    },
 };
 
 const STATUS_STYLE: Record<string, { c: string; icon: React.ReactNode }> = {
   upcoming:        { c: '#ffaa00',         icon: <Calendar   size={9} /> },
-  ex_date_passed:  { c: '#00aaff',         icon: <AlertCircle size={9} /> },
+  ex_date_passed:  { c: '#e10600',         icon: <AlertCircle size={9} /> },
   paid:            { c: 'var(--positive)', icon: <CheckCircle size={9} /> },
-  processing:      { c: '#aa88ff',         icon: <AlertCircle size={9} /> },
+  processing:      { c: '#6b7280',         icon: <AlertCircle size={9} /> },
 };
 
 export default function CorporateActionsPanel() {
@@ -57,7 +57,7 @@ export default function CorporateActionsPanel() {
           </div>
         )}
         {a.ratio && (
-          <div className="mt-2 flex items-center gap-1 text-[9px] font-mono" style={{ color: '#00aaff' }}>
+          <div className="mt-2 flex items-center gap-1 text-[9px] font-mono" style={{ color: '#e10600' }}>
             <Percent size={9} />
             Ratio: {a.ratio}
           </div>

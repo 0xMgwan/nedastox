@@ -4,7 +4,7 @@ import { TRADES } from '@/data/backoffice-data';
 import { ArrowUpRight, Link2 } from 'lucide-react';
 
 const STATUS_COLOR: Record<string, string> = {
-  settled:'var(--positive)', matched:'#00aaff', pending:'#ffaa00', break:'var(--negative)', failed:'var(--negative)', cancelled:'#888',
+  settled:'var(--positive)', matched:'#e10600', pending:'#ffaa00', break:'var(--negative)', failed:'var(--negative)', cancelled:'#888',
 };
 
 export default function BackOfficeLink({ fundId }: { fundId: string }) {
@@ -14,10 +14,10 @@ export default function BackOfficeLink({ fundId }: { fundId: string }) {
     <div style={{ border: '1px solid var(--border)', background: 'var(--bg-card)' }}>
       <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: '1px solid var(--border)' }}>
         <span className="flex items-center gap-2 text-[9px] font-mono tracking-wider" style={{ color: 'var(--fg-dim)' }}>
-          <Link2 size={11} style={{ color: '#00aaff' }} />
+          <Link2 size={11} style={{ color: '#e10600' }} />
           BACK OFFICE LINKAGE — DSE EXECUTIONS FOR THIS FUND
         </span>
-        <Link href="/back-office" className="flex items-center gap-1 text-[8px] font-mono no-underline" style={{ color: '#00aaff' }}>
+        <Link href="/back-office" className="flex items-center gap-1 text-[8px] font-mono no-underline" style={{ color: '#e10600' }}>
           OPEN BACK OFFICE <ArrowUpRight size={9} />
         </Link>
       </div>
@@ -41,7 +41,7 @@ export default function BackOfficeLink({ fundId }: { fundId: string }) {
                 <tr key={t.id} style={{ borderBottom: '1px solid var(--border)' }}
                   onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-hover)')}
                   onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
-                  <td className="px-3 py-2" style={{ color: '#00aaff' }}>{t.contractNo}</td>
+                  <td className="px-3 py-2" style={{ color: '#e10600' }}>{t.contractNo}</td>
                   <td className="px-3 py-2 font-bold" style={{ color: 'var(--fg)' }}>{t.symbol}</td>
                   <td className="px-3 py-2" style={{ color: t.side === 'buy' ? 'var(--positive)' : 'var(--negative)' }}>{t.side.toUpperCase()}</td>
                   <td className="px-3 py-2 tabular-nums" style={{ color: 'var(--fg)' }}>{t.quantity.toLocaleString()}</td>

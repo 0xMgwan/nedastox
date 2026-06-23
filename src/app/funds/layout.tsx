@@ -19,7 +19,7 @@ function Gate({ children }: { children: ReactNode }) {
     <AuthLogin
       title="ASSETCONNECT IMS"
       subtitle="INVESTMENT MANAGEMENT · FUND OPERATIONS · SECURE ACCESS"
-      accent="#00aaff"
+      accent="#e10600"
       footerNote="IAS 39 COMPLIANT · CMSA REGULATED · SESSION ENCRYPTED"
       demoCredentials={IMS_DEMO_CREDENTIALS}
       login={login}

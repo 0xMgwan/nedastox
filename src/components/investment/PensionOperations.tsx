@@ -64,7 +64,7 @@ export default function PensionOperations({ fund }: { fund: Fund }) {
             <button key={s.id} onClick={() => setSection(s.id)}
               className="flex items-center gap-1.5 px-3 py-1.5 text-[8px] font-mono transition-all"
               style={section === s.id
-                ? { background: color, color: '#000', border: `1px solid ${color}` }
+                ? { background: color, color: '#fff', border: `1px solid ${color}` }
                 : { border: '1px solid var(--border)', color: 'var(--fg-muted)' }}>
               {s.icon}{s.label}
             </button>
@@ -115,7 +115,7 @@ export default function PensionOperations({ fund }: { fund: Fund }) {
           <div className="px-4 py-3 flex items-center gap-3" style={{ borderTop: '1px solid var(--border)' }}>
             <button onClick={() => setGenConfirm(`Generated ${selectedCount} contributions · TZS ${selectedTotal.toLocaleString()} · split across sub-funds per scheme`)}
               disabled={selectedCount === 0}
-              className="px-4 py-1.5 text-[9px] font-mono" style={{ background: color, color: '#000', border: `1px solid ${color}`, opacity: selectedCount === 0 ? 0.5 : 1 }}>
+              className="px-4 py-1.5 text-[9px] font-mono" style={{ background: color, color: '#fff', border: `1px solid ${color}`, opacity: selectedCount === 0 ? 0.5 : 1 }}>
               SUBMIT ({selectedCount})
             </button>
             <span className="text-[8px] font-mono" style={{ color: 'var(--fg-faint)' }}>
@@ -196,7 +196,7 @@ export default function PensionOperations({ fund }: { fund: Fund }) {
                   className="w-full px-2 py-1.5 text-[9px] font-mono bg-transparent" style={{ border: '1px solid var(--border)', color: 'var(--fg)' }} />
               </div>
               <button onClick={() => setRetConfirm(`Redemption queued · ${redeemType} · net payout TZS ${netPayout.toLocaleString(undefined,{maximumFractionDigits:0})}`)}
-                className="w-full py-2 text-[9px] font-mono" style={{ background: color, color: '#000', border: `1px solid ${color}` }}>
+                className="w-full py-2 text-[9px] font-mono" style={{ background: color, color: '#fff', border: `1px solid ${color}` }}>
                 PROCESS REDEMPTION →
               </button>
               {retConfirm && (

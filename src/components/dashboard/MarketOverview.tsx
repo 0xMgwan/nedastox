@@ -31,7 +31,7 @@ export default function MarketOverview({ stocks, bonds, funds, forex, onSelect, 
   const assetClassAlloc = [
     { name: 'Equities', value: totalMktCap,                             color: 'var(--positive)' },
     { name: 'Bonds',    value: bonds.length * 100_000 * 10,             color: '#ffaa00' },
-    { name: 'Funds',    value: funds.reduce((s, f) => s + f.price * 1000, 0), color: '#00ccff' },
+    { name: 'Funds',    value: funds.reduce((s, f) => s + f.price * 1000, 0), color: '#1f2937' },
   ];
 
   return (

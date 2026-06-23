@@ -35,7 +35,7 @@ export default function BackOfficePage() {
   const [selectedTrade, setSelected] = useState<Trade | null>(TRADES[0]);
 
   const stats = tradeStats();
-  const accentColor = '#00aaff';
+  const accentColor = '#e10600';
 
   const kpis = [
     { l:'TOTAL TRADES',    v: String(stats.total),   c:'var(--fg)',         icon: <TrendingUp size={11} /> },
@@ -57,7 +57,7 @@ export default function BackOfficePage() {
               <span className="text-[9px] font-mono">HOME</span>
             </Link>
             <div className="h-3 w-px" style={{ background: 'var(--border-strong)' }} />
-            <div className="font-mono text-lg font-bold tracking-widest italic -skew-x-12" style={{ color: 'var(--fg)' }}>TZASSETS</div>
+            <div className="text-lg font-semibold tracking-tight" style={{ color: 'var(--fg)' }}>AssetConnect</div>
             <div className="h-3 w-px" style={{ background: 'var(--border-strong)' }} />
             <span className="text-[10px] font-mono" style={{ color: accentColor }}>BROKER BACK OFFICE</span>
             <span className="text-[8px] font-mono hidden lg:inline" style={{ color: 'var(--fg-faint)' }}>FIMCO · DSE MEMBER</span>
@@ -126,7 +126,7 @@ export default function BackOfficePage() {
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-[8px] font-mono mb-4" style={{ color: 'var(--fg-faint)' }}>
-          <span style={{ color: 'var(--fg-dim)' }}>TZASSETS</span>
+          <span style={{ color: 'var(--fg-dim)' }}>AssetConnect</span>
           <span>/</span><span>BACK OFFICE</span>
           <span>/</span><span style={{ color: accentColor }}>{TABS.find(t=>t.id===tab)?.label}</span>
           {stats.breaks > 0 && (
@@ -213,7 +213,7 @@ export default function BackOfficePage() {
                 <div key={t.id} onClick={() => setSelected(t)}
                   className="p-3 cursor-pointer flex items-center justify-between"
                   style={{
-                    border: selectedTrade?.id === t.id ? '1px solid #00aaff' : '1px solid var(--border)',
+                    border: selectedTrade?.id === t.id ? '1px solid #e10600' : '1px solid var(--border)',
                     background: selectedTrade?.id === t.id ? 'rgba(0,170,255,0.05)' : 'var(--bg-card)',
                   }}
                   onMouseEnter={e => { if (selectedTrade?.id !== t.id) e.currentTarget.style.background = 'var(--bg-hover)'; }}
@@ -250,7 +250,7 @@ export default function BackOfficePage() {
 
       <footer className="max-w-[1600px] mx-auto px-4 lg:px-8 py-4 mt-6 text-[8px] font-mono"
         style={{ borderTop: '1px solid var(--border)', color: 'var(--fg-faint)' }}>
-        TZASSETS BROKER BACK OFFICE v1.0.0 · FIMCO Securities · DSE Member · CMSA Licensed · CSD Connected
+        AssetConnect BROKER BACK OFFICE v1.0.0 · FIMCO Securities · DSE Member · CMSA Licensed · CSD Connected
       </footer>
     </div>
   );

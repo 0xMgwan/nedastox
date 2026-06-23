@@ -76,7 +76,7 @@ export default function PriceChart({ asset }: { asset: Asset }) {
   const last    = data[data.length - 1]?.price ?? asset.price;
   const pct     = first ? ((last - first) / first) * 100 : 0;
   const isPos   = pct >= 0;
-  const rawColor = isPos ? '#00ff88' : '#ff3b3b';
+  const rawColor = isPos ? '#0e8a4f' : '#e10600';
   const minP    = data.length ? Math.min(...data.map(d => d.price)) * 0.995 : 0;
   const maxP    = data.length ? Math.max(...data.map(d => d.price)) * 1.005 : 1;
   const srcInfo  = DATA_SOURCE_LABELS[asset.source];

@@ -46,7 +46,7 @@ export default function AuthLogin({ title, subtitle, accent, footerNote, demoCre
         <div className="p-6" style={{ border: '1px solid var(--border)', background: 'var(--bg-card)' }}>
           <div className="flex items-center gap-2 mb-1">
             <Shield size={16} style={{ color: accent }} />
-            <span className="font-mono text-lg font-bold tracking-widest italic -skew-x-12" style={{ color: 'var(--fg)' }}>
+            <span className="text-lg font-semibold tracking-tight" style={{ color: 'var(--fg)' }}>
               {title}
             </span>
           </div>
@@ -81,7 +81,7 @@ export default function AuthLogin({ title, subtitle, accent, footerNote, demoCre
 
             <button type="submit" disabled={loading}
               className="w-full py-2.5 text-[10px] font-mono tracking-wider transition-all"
-              style={{ background: accent, color: '#000', border: `1px solid ${accent}`, opacity: loading ? 0.6 : 1 }}>
+              style={{ background: accent, color: '#fff', border: `1px solid ${accent}`, opacity: loading ? 0.6 : 1 }}>
               {loading ? 'AUTHENTICATING…' : 'SIGN IN →'}
             </button>
           </form>

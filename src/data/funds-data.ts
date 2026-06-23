@@ -120,8 +120,8 @@ export const MUTUAL_FUNDS: Fund[] = [
     oneYrReturn: 14.72,
     threeYrReturn: 38.4,
     allocation: [
-      { asset: 'DSE Equities', pct: 72, color: '#00ff88' },
-      { asset: 'Treasury Bills', pct: 15, color: '#00aaff' },
+      { asset: 'DSE Equities', pct: 72, color: '#0e8a4f' },
+      { asset: 'Treasury Bills', pct: 15, color: '#e10600' },
       { asset: 'Corporate Bonds', pct: 8, color: '#ffaa00' },
       { asset: 'Cash & MM', pct: 5, color: '#888' },
     ],
@@ -150,8 +150,8 @@ export const MUTUAL_FUNDS: Fund[] = [
     oneYrReturn: 10.34,
     threeYrReturn: 28.9,
     allocation: [
-      { asset: 'DSE Equities', pct: 48, color: '#00ff88' },
-      { asset: 'Government Bonds', pct: 30, color: '#00aaff' },
+      { asset: 'DSE Equities', pct: 48, color: '#0e8a4f' },
+      { asset: 'Government Bonds', pct: 30, color: '#e10600' },
       { asset: 'Treasury Bills', pct: 14, color: '#ffaa00' },
       { asset: 'Cash & MM', pct: 8, color: '#888' },
     ],
@@ -180,8 +180,8 @@ export const MUTUAL_FUNDS: Fund[] = [
     oneYrReturn: 9.65,
     threeYrReturn: 22.1,
     allocation: [
-      { asset: 'Treasury Bills', pct: 65, color: '#00aaff' },
-      { asset: 'Bank Deposits', pct: 20, color: '#00ff88' },
+      { asset: 'Treasury Bills', pct: 65, color: '#e10600' },
+      { asset: 'Bank Deposits', pct: 20, color: '#0e8a4f' },
       { asset: 'Commercial Paper', pct: 10, color: '#ffaa00' },
       { asset: 'Cash', pct: 5, color: '#888' },
     ],
@@ -210,9 +210,9 @@ export const MUTUAL_FUNDS: Fund[] = [
     oneYrReturn: 11.28,
     threeYrReturn: 30.5,
     allocation: [
-      { asset: 'Government Bonds', pct: 70, color: '#00aaff' },
+      { asset: 'Government Bonds', pct: 70, color: '#e10600' },
       { asset: 'Corporate Bonds', pct: 15, color: '#ffaa00' },
-      { asset: 'Treasury Bills', pct: 10, color: '#00ff88' },
+      { asset: 'Treasury Bills', pct: 10, color: '#0e8a4f' },
       { asset: 'Cash', pct: 5, color: '#888' },
     ],
     navHistory: BOND_HIST,
@@ -249,8 +249,8 @@ export const PENSION_FUNDS: Fund[] = [
     oneYrReturn: 10.48,
     threeYrReturn: 26.3,
     allocation: [
-      { asset: 'Government Bonds', pct: 55, color: '#00aaff' },
-      { asset: 'Treasury Bills', pct: 25, color: '#00ff88' },
+      { asset: 'Government Bonds', pct: 55, color: '#e10600' },
+      { asset: 'Treasury Bills', pct: 25, color: '#0e8a4f' },
       { asset: 'DSE Equities', pct: 12, color: '#ffaa00' },
       { asset: 'Cash & MM', pct: 8, color: '#888' },
     ],
@@ -279,8 +279,8 @@ export const PENSION_FUNDS: Fund[] = [
     oneYrReturn: 13.26,
     threeYrReturn: 34.7,
     allocation: [
-      { asset: 'DSE Equities', pct: 40, color: '#00ff88' },
-      { asset: 'Government Bonds', pct: 35, color: '#00aaff' },
+      { asset: 'DSE Equities', pct: 40, color: '#0e8a4f' },
+      { asset: 'Government Bonds', pct: 35, color: '#e10600' },
       { asset: 'Real Estate', pct: 15, color: '#ffaa00' },
       { asset: 'Cash & MM', pct: 10, color: '#888' },
     ],
@@ -309,9 +309,9 @@ export const PENSION_FUNDS: Fund[] = [
     oneYrReturn: 18.94,
     threeYrReturn: 52.8,
     allocation: [
-      { asset: 'DSE Equities', pct: 65, color: '#00ff88' },
-      { asset: 'Private Equity', pct: 20, color: '#ff6b35' },
-      { asset: 'Government Bonds', pct: 10, color: '#00aaff' },
+      { asset: 'DSE Equities', pct: 65, color: '#0e8a4f' },
+      { asset: 'Private Equity', pct: 20, color: '#b45309' },
+      { asset: 'Government Bonds', pct: 10, color: '#e10600' },
       { asset: 'Cash', pct: 5, color: '#888' },
     ],
     navHistory: PEN_C,
@@ -348,8 +348,8 @@ export const PROVIDENT_FUNDS: Fund[] = [
     oneYrReturn: 9.20,
     threeYrReturn: 23.1,
     allocation: [
-      { asset: 'Treasury Bills', pct: 50, color: '#00aaff' },
-      { asset: 'DSE Equities', pct: 25, color: '#00ff88' },
+      { asset: 'Treasury Bills', pct: 50, color: '#e10600' },
+      { asset: 'DSE Equities', pct: 25, color: '#0e8a4f' },
       { asset: 'Term Deposits', pct: 20, color: '#ffaa00' },
       { asset: 'Cash', pct: 5, color: '#888' },
     ],
@@ -378,8 +378,8 @@ export const PROVIDENT_FUNDS: Fund[] = [
     oneYrReturn: 8.86,
     threeYrReturn: 21.4,
     allocation: [
-      { asset: 'Treasury Bills', pct: 55, color: '#00aaff' },
-      { asset: 'DSE Equities', pct: 20, color: '#00ff88' },
+      { asset: 'Treasury Bills', pct: 55, color: '#e10600' },
+      { asset: 'DSE Equities', pct: 20, color: '#0e8a4f' },
       { asset: 'Corporate Bonds', pct: 15, color: '#ffaa00' },
       { asset: 'Cash', pct: 10, color: '#888' },
     ],
@@ -408,8 +408,8 @@ export const PROVIDENT_FUNDS: Fund[] = [
     oneYrReturn: 11.14,
     threeYrReturn: 27.8,
     allocation: [
-      { asset: 'Government Bonds', pct: 40, color: '#00aaff' },
-      { asset: 'DSE Equities', pct: 35, color: '#00ff88' },
+      { asset: 'Government Bonds', pct: 40, color: '#e10600' },
+      { asset: 'DSE Equities', pct: 35, color: '#0e8a4f' },
       { asset: 'Treasury Bills', pct: 15, color: '#ffaa00' },
       { asset: 'Cash', pct: 10, color: '#888' },
     ],
@@ -447,8 +447,8 @@ export const PRIVATE_EQUITY_FUNDS: Fund[] = [
     threeYrReturn: 44.6,
     allocation: [
       { asset: 'Energy & Utilities', pct: 40, color: '#ffaa00' },
-      { asset: 'Transport & Logistics', pct: 30, color: '#00ff88' },
-      { asset: 'Telecoms', pct: 20, color: '#00aaff' },
+      { asset: 'Transport & Logistics', pct: 30, color: '#0e8a4f' },
+      { asset: 'Telecoms', pct: 20, color: '#e10600' },
       { asset: 'Cash', pct: 10, color: '#888' },
     ],
     navHistory: EAIF_HIST,
@@ -476,8 +476,8 @@ export const PRIVATE_EQUITY_FUNDS: Fund[] = [
     oneYrReturn: 23.48,
     threeYrReturn: 68.2,
     allocation: [
-      { asset: 'Agri-business', pct: 35, color: '#00ff88' },
-      { asset: 'Fintech', pct: 30, color: '#00aaff' },
+      { asset: 'Agri-business', pct: 35, color: '#0e8a4f' },
+      { asset: 'Fintech', pct: 30, color: '#e10600' },
       { asset: 'Healthcare', pct: 25, color: '#ffaa00' },
       { asset: 'Cash', pct: 10, color: '#888' },
     ],
@@ -569,8 +569,8 @@ export const FUND_TYPE_LABELS: Record<FundType, string> = {
 };
 
 export const FUND_TYPE_COLORS: Record<FundType, string> = {
-  mutual:         '#00ff88',
-  pension:        '#00aaff',
-  provident:      '#ffaa00',
-  private_equity: '#ff6b35',
+  mutual:         '#e10600',
+  pension:        '#1f2937',
+  provident:      '#b45309',
+  private_equity: '#6b7280',
 };

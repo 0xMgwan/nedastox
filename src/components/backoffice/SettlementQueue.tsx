@@ -3,7 +3,7 @@ import { SETTLEMENT_QUEUE, SettleStatus } from '@/data/backoffice-data';
 
 const STATUS_STYLE: Record<SettleStatus, { color: string; label: string }> = {
   pending:   { color: '#ffaa00',         label: 'PENDING'   },
-  sent:      { color: '#00aaff',         label: 'SENT'      },
+  sent:      { color: '#e10600',         label: 'SENT'      },
   confirmed: { color: 'var(--positive)', label: 'CONFIRMED' },
   failed:    { color: 'var(--negative)', label: 'FAILED'    },
   overdue:   { color: 'var(--negative)', label: 'OVERDUE'   },

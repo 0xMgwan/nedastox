@@ -57,7 +57,7 @@ export default function ProvidentOperations({ fund }: { fund: Fund }) {
             <button key={s.id} onClick={() => setSection(s.id)}
               className="flex items-center gap-1.5 px-3 py-1.5 text-[8px] font-mono transition-all"
               style={section === s.id
-                ? { background: color, color: '#000', border: `1px solid ${color}` }
+                ? { background: color, color: '#fff', border: `1px solid ${color}` }
                 : { border: '1px solid var(--border)', color: 'var(--fg-muted)' }}>
               {s.icon}{s.label}
             </button>
@@ -77,7 +77,7 @@ export default function ProvidentOperations({ fund }: { fund: Fund }) {
             </select>
             <span className="text-[8px] font-mono" style={{ color: 'var(--fg-faint)' }}>Contribution Month: 2026-05</span>
             <button onClick={() => setImported(true)}
-              className="ml-auto flex items-center gap-1 px-3 py-1 text-[8px] font-mono" style={{ background: color, color: '#000', border: `1px solid ${color}` }}>
+              className="ml-auto flex items-center gap-1 px-3 py-1 text-[8px] font-mono" style={{ background: color, color: '#fff', border: `1px solid ${color}` }}>
               <Upload size={9} /> PROCESS IMPORT
             </button>
           </div>

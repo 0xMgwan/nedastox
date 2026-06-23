@@ -79,7 +79,7 @@ export default function UnitManagement({ fund }: { fund: Fund }) {
               <button key={k.id} onClick={() => { setKind(k.id); setConfirm(null); }}
                 className="flex items-center gap-1.5 px-3 py-1.5 text-[8px] font-mono transition-all"
                 style={kind === k.id
-                  ? { background: color, color: '#000', border: `1px solid ${color}` }
+                  ? { background: color, color: '#fff', border: `1px solid ${color}` }
                   : { border: '1px solid var(--border)', color: 'var(--fg-muted)' }}>
                 {k.icon}{k.label}
               </button>
@@ -162,7 +162,7 @@ export default function UnitManagement({ fund }: { fund: Fund }) {
           <div className="flex items-center gap-3">
             <button onClick={submit}
               className="px-5 py-2 text-[9px] font-mono tracking-wider"
-              style={{ background: color, color: '#000', border: `1px solid ${color}` }}>
+              style={{ background: color, color: '#fff', border: `1px solid ${color}` }}>
               SUBMIT {KINDS.find(k => k.id === kind)?.label} →
             </button>
             <span className="text-[7px] font-mono" style={{ color: 'var(--fg-faint)' }}>
@@ -184,7 +184,7 @@ export default function UnitManagement({ fund }: { fund: Fund }) {
                 <div><span style={{ color: 'var(--fg-faint)' }}>Status: </span><span style={{ color: '#ffaa00' }}>PENDING APPROVAL</span></div>
               </div>
               {confirm.cn && (
-                <div className="text-[8px] font-mono pt-1" style={{ borderTop: '1px solid var(--border)', color: '#00aaff' }}>
+                <div className="text-[8px] font-mono pt-1" style={{ borderTop: '1px solid var(--border)', color: '#e10600' }}>
                   ↳ Routed to Broker Back Office — contract note <strong>{confirm.cn}</strong> generated for DSE execution & T+2 settlement
                 </div>
               )}

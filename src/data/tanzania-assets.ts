@@ -333,24 +333,24 @@ export function formatTZS(value: number, compact = false): string {
 }
 
 export const DATA_SOURCE_LABELS: Record<DataSource, { label: string; color: string; url: string }> = {
-  DSE_LIVE: { label: '● DSE LIVE', color: '#00ff88', url: 'https://dse.co.tz/market/data/overview' },
+  DSE_LIVE: { label: '● DSE LIVE', color: '#0e8a4f', url: 'https://dse.co.tz/market/data/overview' },
   BOT_REF:  { label: 'BOT REF',   color: '#ffaa00', url: 'https://www.bot.go.tz'                  },
-  UTT_NAV:  { label: 'UTT NAV',   color: '#aa88ff', url: 'https://www.utt-amis.co.tz'             },
-  LIVE:     { label: '● LIVE',    color: '#00ff88', url: 'https://exchangerate-api.com'            },
+  UTT_NAV:  { label: 'UTT NAV',   color: '#6b7280', url: 'https://www.utt-amis.co.tz'             },
+  LIVE:     { label: '● LIVE',    color: '#0e8a4f', url: 'https://exchangerate-api.com'            },
 };
 
 export const SECTOR_COLORS: Record<string, string> = {
-  Banking:           '#00ff88',
-  'Consumer Goods':  '#00ccff',
+  Banking:           '#0e8a4f',
+  'Consumer Goods':  '#1f2937',
   Materials:         '#ffaa00',
-  Transportation:    '#ff6688',
-  Agriculture:       '#88ff44',
-  Insurance:         '#aa88ff',
-  'Financial Services': '#ff9900',
-  Telecoms:          '#ff55cc',
-  Energy:            '#ffdd00',
-  Media:             '#55aaff',
+  Transportation:    '#be123c',
+  Agriculture:       '#0e8a4f',
+  Insurance:         '#6b7280',
+  'Financial Services': '#b45309',
+  Telecoms:          '#9d174d',
+  Energy:            '#a16207',
+  Media:             '#374151',
   Industrial:        '#aaaaaa',
-  Retail:            '#ff8866',
+  Retail:            '#c2410c',
   Other:             '#666666',
 };

@@ -4,10 +4,10 @@ import { FUND_TRANSACTIONS, FundTransaction } from '@/data/funds-data';
 const TXN_COLORS: Record<string, string> = {
   purchase:     'var(--positive)',
   redemption:   'var(--negative)',
-  transfer_in:  '#00aaff',
+  transfer_in:  '#e10600',
   transfer_out: '#ffaa00',
-  dividend:     '#aa88ff',
-  bonus:        '#aa88ff',
+  dividend:     '#6b7280',
+  bonus:        '#6b7280',
 };
 
 interface Props { fundId?: string; limit?: number; }

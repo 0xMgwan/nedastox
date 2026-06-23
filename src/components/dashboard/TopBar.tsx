@@ -78,11 +78,11 @@ export default function TopBar({ activeTab, onTabChange, tzsUsd, dseIndex }: Top
         <div className="flex items-center gap-4 lg:gap-8 py-3">
           {/* Logo */}
           <Link href="/" className="no-underline">
-            <div className="font-mono font-bold text-base tracking-widest italic transform -skew-x-12 transition-colors"
+            <div className="font-semibold text-base tracking-tight transition-colors"
               style={{ color: 'var(--fg)' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'var(--fg)')}>
-              TZASSETS
+              AssetConnect
             </div>
           </Link>
 

@@ -72,7 +72,7 @@ export default function FundsPage() {
               <span className="text-[9px] font-mono">HOME</span>
             </Link>
             <div className="h-3 w-px" style={{ background: 'var(--border-strong)' }} />
-            <div className="font-mono text-lg font-bold tracking-widest italic -skew-x-12" style={{ color: 'var(--fg)' }}>
+            <div className="text-lg font-semibold tracking-tight" style={{ color: 'var(--fg)' }}>
               ASSETCONNECT
             </div>
             <div className="h-3 w-px" style={{ background: 'var(--border-strong)' }} />
@@ -289,7 +289,7 @@ export default function FundsPage() {
       {/* Footer */}
       <footer className="max-w-[1600px] mx-auto px-4 lg:px-8 py-4 mt-6 text-[8px] font-mono"
         style={{ borderTop: '1px solid var(--border)', color: 'var(--fg-faint)' }}>
-        TZASSETS IMS v1.0.0 · AssetConnect Module · IAS 39 Compliant · CMSA Regulated · BOT Supervised
+        AssetConnect IMS v1.0.0 · AssetConnect Module · IAS 39 Compliant · CMSA Regulated · BOT Supervised
       </footer>
     </div>
   );

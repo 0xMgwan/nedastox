@@ -61,7 +61,7 @@ export default function PortfolioTracker() {
   const allocationData = holdings.map(h => ({
     name:  h.asset.symbol,
     value: (h.asset.price * h.shares / totalValue) * 100,
-    color: h.asset.category === 'bond' ? '#ffaa00' : h.asset.category === 'fund' ? '#00ccff' : 'var(--positive)',
+    color: h.asset.category === 'bond' ? '#ffaa00' : h.asset.category === 'fund' ? '#1f2937' : 'var(--positive)',
   }));
 
   const historyData = buildPortfolioHistory(holdings);
@@ -92,7 +92,7 @@ export default function PortfolioTracker() {
   }
 
   const retColor = isPos ? 'var(--positive)' : 'var(--negative)';
-  const rawRetColor = isPos ? '#00ff88' : '#ff3b3b';
+  const rawRetColor = isPos ? '#0e8a4f' : '#e10600';
 
   const summaryCards = [
     { label: 'TOTAL VALUE',  value: formatTZS(totalValue, true),                      color: 'var(--fg)'       },

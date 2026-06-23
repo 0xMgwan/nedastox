@@ -19,7 +19,7 @@ function Gate({ children }: { children: ReactNode }) {
     <AuthLogin
       title="BACK OFFICE"
       subtitle="FIMCO SECURITIES · DSE MEMBER · SECURE ACCESS"
-      accent="#00aaff"
+      accent="#e10600"
       footerNote="CMSA LICENSED · CSD CONNECTED · SESSION ENCRYPTED"
       demoCredentials={BO_DEMO_CREDENTIALS}
       login={login}

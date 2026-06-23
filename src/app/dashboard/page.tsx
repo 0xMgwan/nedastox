@@ -120,7 +120,7 @@ function DashboardContent() {
       <main className="px-4 lg:px-8 py-6 space-y-4 max-w-[1600px] mx-auto">
         {/* Breadcrumb + live indicator */}
         <div className="flex items-center gap-2 text-[9px] font-mono" style={{ color: 'var(--fg-faint)' }}>
-          <span style={{ color: 'var(--fg-dim)' }}>TZASSETS</span>
+          <span style={{ color: 'var(--fg-dim)' }}>AssetConnect</span>
           <span>/</span>
           <span style={{ color: 'var(--fg-muted)' }}>{activeTab.toUpperCase()}</span>
           {selectedAsset && !['overview','portfolio'].includes(activeTab) && (
@@ -280,7 +280,7 @@ function DashboardContent() {
         style={{ borderTop: '1px solid var(--border)', color: 'var(--fg-faint)' }}>
         <div className="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex flex-wrap items-center gap-3">
-            <span>TZASSETS v1.0.0</span>
+            <span>AssetConnect v1.0.0</span>
             {['dse.co.tz', 'bot.go.tz', 'utt-amis.co.tz', 'exchangerate-api.com'].map(s => (
               <span key={s} style={{ color: 'var(--fg-faint)' }}>· {s}</span>
             ))}

@@ -4,7 +4,7 @@ import { FileText, Download, Send, CheckCircle, Clock, AlertCircle } from 'lucid
 
 const STATUS_CFG: Record<string, { c: string; icon: React.ReactNode }> = {
   draft:        { c: '#888',            icon: <Clock       size={9} /> },
-  submitted:    { c: '#00aaff',         icon: <Send        size={9} /> },
+  submitted:    { c: '#e10600',         icon: <Send        size={9} /> },
   acknowledged: { c: 'var(--positive)', icon: <CheckCircle size={9} /> },
   overdue:      { c: 'var(--negative)', icon: <AlertCircle size={9} /> },
 };
@@ -47,7 +47,7 @@ export default function RegulatoryReports() {
           </span>
           <div className="flex items-center gap-1">
             {r.status === 'draft' && (
-              <button className="flex items-center gap-1 px-2 py-1 text-[8px] font-mono" style={{ border: '1px solid #00aaff', color: '#00aaff' }}>
+              <button className="flex items-center gap-1 px-2 py-1 text-[8px] font-mono" style={{ border: '1px solid #e10600', color: '#e10600' }}>
                 <Send size={8} /> SUBMIT
               </button>
             )}
