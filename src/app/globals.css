@@ -1,58 +1,73 @@
 @import "tailwindcss";
 
-/* ─── Dark theme (default) ─────────────────────────────────────────── */
+/* ─── Light theme (default · white & red brand) ────────────────────── */
 :root,
-[data-theme="dark"] {
-  --bg:          #000000;
-  --bg-secondary:#080808;
-  --bg-card:     rgba(255,255,255,0.025);
-  --bg-hover:    rgba(255,255,255,0.045);
-  --fg:          #ffffff;
-  --fg-muted:    rgba(255,255,255,0.66);
-  --fg-dim:      rgba(255,255,255,0.46);
-  --fg-faint:    rgba(255,255,255,0.30);
-  --grid-line:   rgba(255,255,255,0.06);
-  --border:      rgba(255,255,255,0.14);
-  --border-strong: rgba(255,255,255,0.26);
-  --border-accent: rgba(0,255,136,0.35);
-  --accent:      #00ff88;
-  --accent-bg:   rgba(0,255,136,0.07);
-  --positive:    #00ff88;
-  --negative:    #ff5252;
-  --negative-bg: rgba(255,59,59,0.08);
-  --chart-grid:  rgba(255,255,255,0.06);
-  --scrollbar:   rgba(255,255,255,0.12);
-  --header-bg:   rgba(0,0,0,0.95);
+[data-theme="light"] {
+  --bg:          #ffffff;
+  --bg-secondary:#faf9f8;
+  --bg-card:     #ffffff;
+  --bg-soft:     #f5f3f2;
+  --bg-hover:    rgba(0,0,0,0.035);
+  --fg:          #0c0c0d;
+  --fg-muted:    rgba(12,12,13,0.66);
+  --fg-dim:      rgba(12,12,13,0.48);
+  --fg-faint:    rgba(12,12,13,0.34);
+  --grid-line:   rgba(0,0,0,0.05);
+  --border:      rgba(0,0,0,0.10);
+  --border-strong: rgba(0,0,0,0.20);
+  --border-accent: rgba(225,6,0,0.40);
+  --accent:      #e10600;
+  --accent-hover:#c10500;
+  --accent-bg:   rgba(225,6,0,0.06);
+  --positive:    #0e8a4f;
+  --negative:    #e10600;
+  --negative-bg: rgba(225,6,0,0.07);
+  --chart-grid:  rgba(0,0,0,0.06);
+  --scrollbar:   rgba(0,0,0,0.18);
+  --header-bg:   rgba(255,255,255,0.85);
 }
 
-/* ─── Light theme ───────────────────────────────────────────────────── */
-[data-theme="light"] {
-  --bg:          #f2efe8;
-  --bg-secondary:#eae7de;
-  --bg-card:     rgba(0,0,0,0.03);
-  --bg-hover:    rgba(0,0,0,0.05);
-  --fg:          #0a0a0a;
-  --fg-muted:    rgba(0,0,0,0.72);
-  --fg-dim:      rgba(0,0,0,0.55);
-  --fg-faint:    rgba(0,0,0,0.38);
-  --grid-line:   rgba(0,0,0,0.06);
-  --border:      rgba(0,0,0,0.16);
-  --border-strong: rgba(0,0,0,0.30);
-  --border-accent: rgba(0,90,50,0.40);
-  --accent:      #00713f;
-  --accent-bg:   rgba(0,113,63,0.08);
-  --positive:    #00713f;
-  --negative:    #c0392b;
-  --negative-bg: rgba(192,57,43,0.07);
-  --chart-grid:  rgba(0,0,0,0.07);
-  --scrollbar:   rgba(0,0,0,0.15);
-  --header-bg:   rgba(242,239,232,0.97);
+/* ─── Dark theme ───────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg:          #0a0a0b;
+  --bg-secondary:#121214;
+  --bg-card:     #141416;
+  --bg-soft:     #1a1a1d;
+  --bg-hover:    rgba(255,255,255,0.05);
+  --fg:          #f7f7f8;
+  --fg-muted:    rgba(247,247,248,0.68);
+  --fg-dim:      rgba(247,247,248,0.46);
+  --fg-faint:    rgba(247,247,248,0.30);
+  --grid-line:   rgba(255,255,255,0.05);
+  --border:      rgba(255,255,255,0.12);
+  --border-strong: rgba(255,255,255,0.24);
+  --border-accent: rgba(255,59,53,0.45);
+  --accent:      #ff3b35;
+  --accent-hover:#ff5a55;
+  --accent-bg:   rgba(255,59,53,0.10);
+  --positive:    #2ec27e;
+  --negative:    #ff3b35;
+  --negative-bg: rgba(255,59,53,0.10);
+  --chart-grid:  rgba(255,255,255,0.07);
+  --scrollbar:   rgba(255,255,255,0.14);
+  --header-bg:   rgba(10,10,11,0.85);
 }
 
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--fg);
-  --font-mono: var(--font-geist-mono);
+  /* Platform-wide: existing `font-mono` utilities now resolve to the clean sans */
+  --font-mono: var(--font-sans);
+}
+
+/* Serif display headings (Playfair) */
+.font-display {
+  font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.015em;
+}
+.font-display-italic {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────────────────── */
@@ -67,7 +82,7 @@
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-geist-mono), 'Courier New', monospace;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   transition: background 0.2s ease, color 0.2s ease;
 }
 

@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "assetconnect", "runtimeExecutable": "npm", "runtimeArgs": ["run","dev","--","--port","3014"], "port": 3014 }
+  ]
+}
