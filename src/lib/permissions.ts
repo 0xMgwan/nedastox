@@ -6,19 +6,20 @@ export type IMSInnerTab = 'overview' | 'unit_mgmt' | 'holders' | 'transactions' 
 
 export interface IMSAccess {
   tabs:       IMSInnerTab[];
-  canApprove: boolean;   // maker-checker: only checkers approve queued transactions
-  scope:      string;    // human-readable scope shown in the UI
+  home:       IMSInnerTab; // the tab a role lands on first (its primary workspace)
+  canApprove: boolean;     // maker-checker: only checkers approve queued transactions
+  scope:      string;      // human-readable scope shown in the UI
 }
 
 export const IMS_ACCESS: Record<string, IMSAccess> = {
-  'Portfolio Mgr':  { tabs: ['overview', 'unit_mgmt', 'holders', 'transactions', 'contributions'], canApprove: true,  scope: 'Full access · approver (checker)' },
-  'Dealer':         { tabs: ['overview', 'unit_mgmt'],                                              canApprove: false, scope: 'Dealing · order entry (maker)' },
-  'Transfer Agent': { tabs: ['overview', 'unit_mgmt', 'transactions'],                              canApprove: false, scope: 'Transfers & redemptions (maker)' },
-  'Registrar':      { tabs: ['overview', 'holders', 'contributions'],                               canApprove: false, scope: 'Unit register & KYC' },
+  'Portfolio Mgr':  { tabs: ['overview', 'unit_mgmt', 'holders', 'transactions', 'contributions'], home: 'overview',     canApprove: true,  scope: 'Full access · approver (checker)' },
+  'Dealer':         { tabs: ['unit_mgmt', 'overview'],                                              home: 'unit_mgmt',    canApprove: false, scope: 'Dealing · order entry (maker)' },
+  'Transfer Agent': { tabs: ['transactions', 'unit_mgmt', 'overview'],                              home: 'transactions', canApprove: false, scope: 'Transfers & redemptions (maker)' },
+  'Registrar':      { tabs: ['holders', 'contributions', 'overview'],                               home: 'holders',      canApprove: false, scope: 'Unit register & KYC' },
 };
 
 export const IMS_ACCESS_FALLBACK: IMSAccess = {
-  tabs: ['overview', 'unit_mgmt', 'holders', 'transactions', 'contributions'], canApprove: true, scope: 'Full access',
+  tabs: ['overview', 'unit_mgmt', 'holders', 'transactions', 'contributions'], home: 'overview', canApprove: true, scope: 'Full access',
 };
 
 export function imsAccess(role?: string): IMSAccess {

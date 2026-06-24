@@ -41,16 +41,17 @@ export default function FundsPage() {
   const { theme, toggle } = useTheme();
   const { user, logout }  = useIMSAuth();
   const isDark = theme === 'dark';
+  // Role-based access (user is guaranteed present — layout gates on auth)
+  const access = imsAccess(user?.role);
+
   const [tab, setTab]           = useState<Tab>('mutual');
   const [selected, setSelected] = useState<Fund>(MUTUAL_FUNDS[0]);
-  const [innerTab, setInnerTab] = useState<'overview'|'holders'|'transactions'|'unit_mgmt'|'contributions'>('overview');
+  const [innerTab, setInnerTab] = useState<IMSInnerTab>(access.home);
 
   const currentFunds = TABS.find(t => t.id === tab)!.funds;
   const color = FUND_TYPE_COLORS[tab];
 
-  // Role-based access
-  const access = imsAccess(user?.role);
-  const effectiveInner: IMSInnerTab = access.tabs.includes(innerTab) ? innerTab : 'overview';
+  const effectiveInner: IMSInnerTab = access.tabs.includes(innerTab) ? innerTab : access.home;
 
   // KPI bar
   const kpis = [
@@ -64,7 +65,7 @@ export default function FundsPage() {
     setTab(t);
     const funds = TABS.find(x => x.id === t)!.funds;
     setSelected(funds[0]);
-    setInnerTab('overview');
+    setInnerTab(access.home);
   }
 
   return (
@@ -161,7 +162,7 @@ export default function FundsPage() {
             </div>
             {currentFunds.map(f => (
               <FundCard key={f.id} fund={f} selected={selected?.id === f.id}
-                onClick={() => { setSelected(f); setInnerTab('overview'); }} />
+                onClick={() => { setSelected(f); setInnerTab(access.home); }} />
             ))}
           </div>
 
